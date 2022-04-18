@@ -1,9 +1,14 @@
+import CarDetailPage from "../../pages/CarDetailPage"
 import { FETCH_CARS_FAILURE, FETCH_CARS_REQUEST, FETCH_CARS_SUCCESS, FETCH_CAR_DETAIL_SUCCESS } from "./carTypes"
 
 const initialState: CarState = {
     loading: false,
     cars: [],
-    carDetail: {},
+    carDetail: {
+        capacity: `4 Orang`,
+        transmission: `Manual`,
+        manufacturDate: `Tahun 2020`
+    },
     error: ''
 }
 
@@ -16,12 +21,14 @@ const carReducer = (state: CarState = initialState, action: CarActionTypes) => {
             }
         case FETCH_CAR_DETAIL_SUCCESS:
             return {
+                ...state,
                 loading: false,
-                carDetail: action.payload,
+                carDetail: { ...state.carDetail, ...action.payload },
                 error: ''
             }
         case FETCH_CARS_SUCCESS:
             return {
+                ...state,
                 loading: false,
                 cars: action.payload,
                 error: ''

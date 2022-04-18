@@ -1,14 +1,28 @@
-import { createStore, applyMiddleware, Store, compose } from 'redux'
+import { createStore, applyMiddleware, Store, compose, Reducer, CombinedState, combineReducers } from 'redux'
+import persistReducer from 'redux-persist/lib/persistReducer';
+import persistStore from 'redux-persist/lib/persistStore';
+import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk'
 import carReducer from './car/carReducer';
-import rootReducer from './rootReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose || compose;
+
+const rootReducer = combineReducers({
+  car: carReducer
+})
+
+const persistConfig = {
+  key: 'root',
+  storage
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store: Store = createStore(
-  rootReducer,
+  persistedReducer,
   composeEnhancers(applyMiddleware(thunk))
 )
 
-export default store
+const persistor = persistStore(store)
+
+export { store, persistor }
