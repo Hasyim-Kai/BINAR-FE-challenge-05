@@ -1,4 +1,4 @@
-# :skull::hocho: BINAR FE Challenge-04
+# :bird: BINAR FE Challenge-05
 #### Same design with [BINAR FE Challenge-04](https://github.com/Hasyim-Kai/BINAR-FE-challenge-04), but built with :point_down:
 ### :trumpet: Tech Stack : React + Redux + Typescript + Tailwind
 
