@@ -33,7 +33,7 @@ export default function Navbar(): JSX.Element {
                     <li><Link to='#'>Why Us</Link></li>
                     <li><Link to='#'>Testimonial</Link></li>
                     <li><Link to='#'>FAQ</Link></li>
-                    <GreenButton text='Register' />
+                    <GreenButton text='Register' additionalStyles=''/>
                 </ul>
             </div>
             {/* // <!-- menu --> */}
